@@ -1,0 +1,26 @@
+ASTRA Experiment Report
+========================================
+Experiment : red_box_demo
+Run ID     : 8bb0ef66-9d77-4e84-b024-b76db78caf4c
+Status     : ABORTED
+Started    : 2026-09-15 17:41:43.662839
+Ended      : 2026-09-15 17:42:13.913370
+Steps      : 0/5 completed (0 skipped)
+Procedure compliance accuracy: 0.0% (0/4 required steps clean)
+
+Step-by-step:
+----------------------------------------
+[ ] S1_PICK: Pick up the red box [NOT_REACHED]
+[ ] S1_PICK_RETRY: Retry — pick up the red box [NOT_REACHED]
+[ ] S2_HOLD: Hold the red box steady [NOT_REACHED]
+[ ] S3_MOVE: Move the red box [NOT_REACHED]
+[ ] S4_PLACE: Place the red box down [NOT_REACHED]
+
+Alerts (4):
+----------------------------------------
+[2026-09-15 17:41:54 UTC] SKIPPED (WARNING) near step S1_PICK (status: TENTATIVE)
+[2026-09-15 17:41:54 UTC] SKIPPED (WARNING) near step S1_PICK_RETRY (status: TENTATIVE)
+[2026-09-15 17:41:54 UTC] SKIPPED (WARNING) near step S3_MOVE (status: TENTATIVE)
+[2026-09-15 17:41:54 UTC] WRONG_ORDER (WARNING) near step S4_PLACE (status: TENTATIVE)
+
+Alert breakdown: SKIPPED=3, WRONG_ORDER=1

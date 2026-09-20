@@ -1,0 +1,62 @@
+experiment: pick_place_demo
+version: "2.0"
+
+# Unlike liquid_mixing_v1 (kept for reference/future use once a trained
+# activity model exists), this config only uses activity labels the
+# current REAL RuleBasedActivityRecognizer can actually produce from live
+# hand-object interaction signal: PICK, HOLD, MOVE, PLACE, REACH, IDLE.
+# This is the honestly-completable end-to-end demo, now exercising the
+# Milestone 6/7 preconditions/postconditions/optional/repeatable engine
+# features the same way red_box_demo.yaml does, just over a bottle
+# (MobileNet-SSD `bottle` class) instead of a color-segmented box.
+
+objects:
+  - id: liquid_bottle
+    class: bottle
+    states: [AVAILABLE, HELD, PLACED]
+
+thresholds:
+  default_confidence: 0.5
+  default_timeout_s: 60
+  tentative_frames: 3
+  confirmed_frames: 8
+  max_timeout_retries: 1
+
+steps:
+  - id: S1_PICK
+    name: Pick up the object
+    activity: PICK
+    required_object: liquid_bottle
+    postconditions: ["liquid_bottle.state == HELD"]
+    next: S2_HOLD
+    voice_instruction: "Pick up the object."
+    timeout_s: 40
+
+  - id: S2_HOLD
+    name: Hold the object steady
+    activity: HOLD
+    required_object: liquid_bottle
+    preconditions: ["liquid_bottle.state == HELD"]
+    next: S3_MOVE
+    voice_instruction: "Hold the object steady."
+    timeout_s: 30
+    optional: true
+
+  - id: S3_MOVE
+    name: Move the object
+    activity: MOVE
+    required_object: liquid_bottle
+    preconditions: ["liquid_bottle.state == HELD"]
+    next: S4_PLACE
+    voice_instruction: "Move the object to its new position."
+    timeout_s: 40
+    repeatable: true
+
+  - id: S4_PLACE
+    name: Place the object down
+    activity: PLACE
+    required_object: liquid_bottle
+    preconditions: ["liquid_bottle.state == HELD"]
+    postconditions: ["liquid_bottle.state == PLACED"]
+    voice_instruction: "Place the object down to finish."
+    timeout_s: 30

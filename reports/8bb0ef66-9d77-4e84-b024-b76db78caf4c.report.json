@@ -1,0 +1,88 @@
+{
+  "run_id": "8bb0ef66-9d77-4e84-b024-b76db78caf4c",
+  "experiment": "red_box_demo",
+  "generated_at": "2026-09-15T17:42:13.930322Z",
+  "overall_status": "ABORTED",
+  "started_at": "2026-09-15T17:41:43.662839",
+  "ended_at": "2026-09-15T17:42:13.913370",
+  "steps": [
+    {
+      "step_id": "S1_PICK",
+      "name": "Pick up the red box",
+      "status": "NOT_REACHED",
+      "completed_at": null,
+      "completed_at_unix": null
+    },
+    {
+      "step_id": "S1_PICK_RETRY",
+      "name": "Retry \u00e2\u20ac\u201d pick up the red box",
+      "status": "NOT_REACHED",
+      "completed_at": null,
+      "completed_at_unix": null
+    },
+    {
+      "step_id": "S2_HOLD",
+      "name": "Hold the red box steady",
+      "status": "NOT_REACHED",
+      "completed_at": null,
+      "completed_at_unix": null
+    },
+    {
+      "step_id": "S3_MOVE",
+      "name": "Move the red box",
+      "status": "NOT_REACHED",
+      "completed_at": null,
+      "completed_at_unix": null
+    },
+    {
+      "step_id": "S4_PLACE",
+      "name": "Place the red box down",
+      "status": "NOT_REACHED",
+      "completed_at": null,
+      "completed_at_unix": null
+    }
+  ],
+  "steps_completed": 0,
+  "steps_skipped": 0,
+  "steps_total": 5,
+  "alerts": [
+    {
+      "ts": 1789494114.4944713,
+      "timestamp": "2026-09-15 17:41:54 UTC",
+      "type": "SKIPPED",
+      "step_id": "S1_PICK",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789494114.4944713,
+      "timestamp": "2026-09-15 17:41:54 UTC",
+      "type": "SKIPPED",
+      "step_id": "S1_PICK_RETRY",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789494114.4944713,
+      "timestamp": "2026-09-15 17:41:54 UTC",
+      "type": "SKIPPED",
+      "step_id": "S3_MOVE",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789494114.4944713,
+      "timestamp": "2026-09-15 17:41:54 UTC",
+      "type": "WRONG_ORDER",
+      "step_id": "S4_PLACE",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    }
+  ],
+  "alert_count": 4,
+  "alert_type_counts": {
+    "SKIPPED": 3,
+    "WRONG_ORDER": 1
+  },
+  "procedure_compliance_accuracy": 0.0
+}

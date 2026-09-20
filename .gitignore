@@ -1,0 +1,15 @@
+venv/
+.venv/
+.pytest_cache/
+__pycache__/
+recordings/
+datasets/
+node_modules/
+*.db
+.env
+*.mp4
+*.avi
+*.mov
+*.pt
+*.pth
+*.onnx

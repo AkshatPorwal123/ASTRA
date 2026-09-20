@@ -1,0 +1,80 @@
+experiment: red_box_demo
+version: "2.0"
+
+# Matches the official problem statement's color-coded box experiment
+# (a red box + at least one other color). Uses ColorBoxDetector, not
+# MobileNet-SSD, since no pretrained class set includes generic "box".
+# This is a placeholder sequence (pick/hold/move/place a red box) — once
+# the full official step sequence is available, this gets replaced with
+# the real multi-box sorting procedure.
+#
+# Milestone 6/7 update: this config now actually exercises preconditions,
+# postconditions, a repeatable step, an optional step (skipped on
+# timeout), and a recovery_step — all of which the engine only started
+# enforcing/detecting in Milestone 6/7. See ASTRA_Technical_Design.md and
+# README.md for what each field does.
+
+objects:
+  - id: red_box
+    class: red_box
+    states: [AVAILABLE, HELD, PLACED]
+
+thresholds:
+  default_confidence: 0.5
+  default_timeout_s: 60
+  tentative_frames: 3
+  confirmed_frames: 8
+  max_timeout_retries: 1
+
+steps:
+  - id: S1_PICK
+    name: Pick up the red box
+    activity: PICK
+    required_object: red_box
+    postconditions: ["red_box.state == HELD"]
+    next: S2_HOLD
+    voice_instruction: "Pick up the red box."
+    timeout_s: 40
+    recovery_step: S1_PICK_RETRY   # after max_timeout_retries exhausted, redirect instead of failing the run
+
+  - id: S1_PICK_RETRY
+    name: Retry — pick up the red box
+    description: >
+      Recovery step reached only if S1_PICK repeatedly times out. Same
+      requirement, longer timeout, more explicit voice prompt —
+      demonstrates Section 15's "recovery states", not just linear failure.
+    activity: PICK
+    required_object: red_box
+    postconditions: ["red_box.state == HELD"]
+    next: S2_HOLD
+    voice_instruction: "Please pick up the red box now. Reach forward and grasp it firmly."
+    timeout_s: 90
+
+  - id: S2_HOLD
+    name: Hold the red box steady
+    activity: HOLD
+    required_object: red_box
+    preconditions: ["red_box.state == HELD"]   # can't HOLD what wasn't validated as picked up
+    next: S3_MOVE
+    voice_instruction: "Hold the red box steady."
+    timeout_s: 30
+    optional: true    # brief/skippable if the astronaut moves straight from pick to move
+
+  - id: S3_MOVE
+    name: Move the red box
+    activity: MOVE
+    required_object: red_box
+    preconditions: ["red_box.state == HELD"]
+    next: S4_PLACE
+    voice_instruction: "Move the red box to its new position."
+    timeout_s: 40
+    repeatable: true  # repositioning more than once during the move is normal, not a REPEATED error
+
+  - id: S4_PLACE
+    name: Place the red box down
+    activity: PLACE
+    required_object: red_box
+    preconditions: ["red_box.state == HELD"]
+    postconditions: ["red_box.state == PLACED"]
+    voice_instruction: "Place the red box down to finish."
+    timeout_s: 30

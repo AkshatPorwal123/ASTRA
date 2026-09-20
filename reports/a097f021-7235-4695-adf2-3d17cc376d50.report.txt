@@ -1,0 +1,33 @@
+ASTRA Experiment Report
+========================================
+Experiment : red_box_demo
+Run ID     : a097f021-7235-4695-adf2-3d17cc376d50
+Status     : FAILED
+Started    : 2026-09-15 17:26:48.568181
+Ended      : 2026-09-15 17:30:23.803053
+Steps      : 2/5 completed (0 skipped)
+Procedure compliance accuracy: 0.0% (0/4 required steps clean)
+
+Step-by-step:
+----------------------------------------
+[x] S1_PICK: Pick up the red box [COMPLETED] — 2026-09-15 17:28:17 UTC
+[ ] S1_PICK_RETRY: Retry â€” pick up the red box [NOT_REACHED]
+[x] S2_HOLD: Hold the red box steady [COMPLETED] — 2026-09-15 17:28:43 UTC
+[ ] S3_MOVE: Move the red box [NOT_REACHED]
+[ ] S4_PLACE: Place the red box down [NOT_REACHED]
+
+Alerts (11):
+----------------------------------------
+[2026-09-15 17:27:14 UTC] SKIPPED (WARNING) near step S1_PICK (status: TENTATIVE)
+[2026-09-15 17:27:14 UTC] SKIPPED (WARNING) near step S1_PICK_RETRY (status: TENTATIVE)
+[2026-09-15 17:27:14 UTC] SKIPPED (WARNING) near step S3_MOVE (status: TENTATIVE)
+[2026-09-15 17:27:14 UTC] WRONG_ORDER (WARNING) near step S4_PLACE (status: TENTATIVE)
+[2026-09-15 17:27:37 UTC] TIMEOUT (WARNING) near step S1_PICK (status: TENTATIVE)
+[2026-09-15 17:28:28 UTC] WRONG_ORDER (WARNING) near step S4_PLACE (status: TENTATIVE)
+[2026-09-15 17:28:36 UTC] REPEATED (WARNING) near step S1_PICK (status: TENTATIVE)
+[2026-09-15 17:29:00 UTC] WRONG_ORDER (WARNING) near step S4_PLACE (status: TENTATIVE)
+[2026-09-15 17:29:10 UTC] REPEATED (WARNING) near step S1_PICK (status: TENTATIVE)
+[2026-09-15 17:29:25 UTC] TIMEOUT (WARNING) near step S3_MOVE (status: TENTATIVE)
+[2026-09-15 17:30:07 UTC] FAILED (ERROR) near step S3_MOVE (status: TENTATIVE)
+
+Alert breakdown: FAILED=1, REPEATED=2, SKIPPED=3, TIMEOUT=2, WRONG_ORDER=3

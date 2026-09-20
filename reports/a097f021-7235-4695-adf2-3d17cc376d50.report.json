@@ -1,0 +1,147 @@
+{
+  "run_id": "a097f021-7235-4695-adf2-3d17cc376d50",
+  "experiment": "red_box_demo",
+  "generated_at": "2026-09-15T17:30:23.812740Z",
+  "overall_status": "FAILED",
+  "started_at": "2026-09-15T17:26:48.568181",
+  "ended_at": "2026-09-15T17:30:23.803053",
+  "steps": [
+    {
+      "step_id": "S1_PICK",
+      "name": "Pick up the red box",
+      "status": "COMPLETED",
+      "completed_at": "2026-09-15 17:28:17 UTC",
+      "completed_at_unix": 1789493297.2695215
+    },
+    {
+      "step_id": "S1_PICK_RETRY",
+      "name": "Retry \u00e2\u20ac\u201d pick up the red box",
+      "status": "NOT_REACHED",
+      "completed_at": null,
+      "completed_at_unix": null
+    },
+    {
+      "step_id": "S2_HOLD",
+      "name": "Hold the red box steady",
+      "status": "COMPLETED",
+      "completed_at": "2026-09-15 17:28:43 UTC",
+      "completed_at_unix": 1789493323.6546996
+    },
+    {
+      "step_id": "S3_MOVE",
+      "name": "Move the red box",
+      "status": "NOT_REACHED",
+      "completed_at": null,
+      "completed_at_unix": null
+    },
+    {
+      "step_id": "S4_PLACE",
+      "name": "Place the red box down",
+      "status": "NOT_REACHED",
+      "completed_at": null,
+      "completed_at_unix": null
+    }
+  ],
+  "steps_completed": 2,
+  "steps_skipped": 0,
+  "steps_total": 5,
+  "alerts": [
+    {
+      "ts": 1789493234.7999842,
+      "timestamp": "2026-09-15 17:27:14 UTC",
+      "type": "SKIPPED",
+      "step_id": "S1_PICK",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789493234.7999842,
+      "timestamp": "2026-09-15 17:27:14 UTC",
+      "type": "SKIPPED",
+      "step_id": "S1_PICK_RETRY",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789493234.7999842,
+      "timestamp": "2026-09-15 17:27:14 UTC",
+      "type": "SKIPPED",
+      "step_id": "S3_MOVE",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789493234.7999842,
+      "timestamp": "2026-09-15 17:27:14 UTC",
+      "type": "WRONG_ORDER",
+      "step_id": "S4_PLACE",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789493257.0181596,
+      "timestamp": "2026-09-15 17:27:37 UTC",
+      "type": "TIMEOUT",
+      "step_id": "S1_PICK",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789493308.3345149,
+      "timestamp": "2026-09-15 17:28:28 UTC",
+      "type": "WRONG_ORDER",
+      "step_id": "S4_PLACE",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789493316.7806144,
+      "timestamp": "2026-09-15 17:28:36 UTC",
+      "type": "REPEATED",
+      "step_id": "S1_PICK",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789493340.3280256,
+      "timestamp": "2026-09-15 17:29:00 UTC",
+      "type": "WRONG_ORDER",
+      "step_id": "S4_PLACE",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789493350.686077,
+      "timestamp": "2026-09-15 17:29:10 UTC",
+      "type": "REPEATED",
+      "step_id": "S1_PICK",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789493365.2052417,
+      "timestamp": "2026-09-15 17:29:25 UTC",
+      "type": "TIMEOUT",
+      "step_id": "S3_MOVE",
+      "severity": "WARNING",
+      "status": "TENTATIVE"
+    },
+    {
+      "ts": 1789493407.4403257,
+      "timestamp": "2026-09-15 17:30:07 UTC",
+      "type": "FAILED",
+      "step_id": "S3_MOVE",
+      "severity": "ERROR",
+      "status": "TENTATIVE"
+    }
+  ],
+  "alert_count": 11,
+  "alert_type_counts": {
+    "SKIPPED": 3,
+    "WRONG_ORDER": 3,
+    "TIMEOUT": 2,
+    "REPEATED": 2,
+    "FAILED": 1
+  },
+  "procedure_compliance_accuracy": 0.0
+}

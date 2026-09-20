@@ -1,0 +1,88 @@
+experiment: liquid_mixing_v1
+version: "1.0"
+
+objects:
+  - id: container
+    class: container
+    states: [AVAILABLE, HELD, OPEN, CLOSED, FILLED, EMPTY]
+  - id: liquid_bottle
+    class: bottle
+    states: [AVAILABLE, HELD]
+  - id: rack
+    class: rack
+    states: [AVAILABLE]
+
+thresholds:
+  default_confidence: 0.65
+  default_timeout_s: 45
+  tentative_frames: 5
+  confirmed_frames: 12
+
+steps:
+  - id: S1_PICK_CONTAINER
+    name: Pick container
+    activity: PICK
+    required_object: container
+    postconditions: ["container.state == HELD"]
+    next: S2_OPEN_CONTAINER
+    voice_instruction: "Pick up the container."
+    timeout_s: 30
+
+  - id: S2_OPEN_CONTAINER
+    name: Open container
+    activity: OPEN
+    required_object: container
+    preconditions: ["container.state == HELD"]
+    postconditions: ["container.state == OPEN"]
+    next: S3_ADD_LIQUID
+    voice_instruction: "Open the container."
+    timeout_s: 30
+    error_conditions:
+      wrong_object: WARN_WRONG_OBJECT
+
+  - id: S3_ADD_LIQUID
+    name: Add liquid
+    activity: POUR
+    required_object: liquid_bottle
+    target_object: container
+    preconditions: ["container.state == OPEN"]
+    postconditions: ["container.state == FILLED"]
+    expected_duration_s: [3, 12]
+    confidence_threshold: 0.65
+    next: S4_MIX
+    voice_instruction: "Next step: add liquid to the open container."
+    timeout_s: 45
+    error_conditions:
+      wrong_object: WARN_WRONG_OBJECT
+      container_not_open: WARN_PRECONDITION_FAILED
+
+  - id: S4_MIX
+    name: Mix
+    activity: MIX
+    required_object: container
+    preconditions: ["container.state == FILLED"]
+    postconditions: ["container.mixed == true"]
+    expected_duration_s: [5, 20]
+    next: S5_CLOSE
+    voice_instruction: "Mix the contents thoroughly."
+    timeout_s: 40
+
+  - id: S5_CLOSE
+    name: Close container
+    activity: CLOSE
+    required_object: container
+    preconditions: ["container.state == FILLED"]
+    postconditions: ["container.state == CLOSED"]
+    next: S6_PLACE_IN_RACK
+    voice_instruction: "Close the container."
+    timeout_s: 30
+
+  - id: S6_PLACE_IN_RACK
+    name: Place in rack
+    activity: PLACE
+    required_object: container
+    target_object: rack
+    preconditions: ["container.state == CLOSED"]
+    postconditions: ["container.location == rack"]
+    voice_instruction: "Place the container in the rack to finish."
+    timeout_s: 30

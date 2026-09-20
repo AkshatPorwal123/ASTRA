@@ -1,0 +1,17 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+sqlalchemy==2.0.35
+alembic==1.13.2
+pydantic==2.9.2
+pyyaml==6.0.2
+python-multipart==0.0.9
+opencv-contrib-python==4.10.0.84
+numpy>=1.26,<3
+psutil==6.0.0
+websockets==13.1
+aiofiles==24.1.0
+jsonschema==4.23.0
+pyttsx3==2.90
+mediapipe==0.10.33
+scikit-learn==1.5.2
+cryptography==43.0.3
